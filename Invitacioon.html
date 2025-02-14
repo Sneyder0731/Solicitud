@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Invitación Especial 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(to right, #f5b2be, #e7b1c8);
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        /* Animación de corazones flotando */
+        @keyframes flotar {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: flotar 5s linear infinite;
+        }
+
+        /* Contenedor principal */
+        .container {
+            margin-top: 50px;
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: latido 1s infinite alternate;
+            color: red;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.3); }
+        }
+
+        /* Carta animada */
+        .carta {
+            background-color: white;
+            color: #d6336c;
+            width: 300px;
+            height: 400px; /* Aumenté la altura */
+            margin: 30px auto;
+            padding: 30px; /* Más espacio interno */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: rotateX(90deg);
+            transition: transform 1s;
+            font-size: 22px;
+        }
+
+        .carta.abierta {
+            transform: rotateX(0deg);
+        }
+
+        /* Botones */
+        .boton {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .boton:hover {
+            background-color: #c9184a;
+            transform: scale(1.1);
+        }
+
+        /* Respuesta */
+        #respuesta {
+            font-size: 24px;
+            font-weight: bold;
+            color: #440794;
+            display: none;
+            animation: aparecer 1s ease-in-out;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Música de fondo -->
+    <audio id="musica" autoplay loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Generar corazones flotantes
+        function crearCorazones() {
+            for (let i = 0; i < 20; i++) {
+                let corazon = document.createElement("div");
+                corazon.innerHTML = "❤️";
+                corazon.classList.add("corazon");
+                corazon.style.left = Math.random() * 100 + "vw";
+                corazon.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(corazon);
+
+                setTimeout(() => corazon.remove(), 5000);
+            }
+        }
+        setInterval(crearCorazones, 800);
+
+        // Mostrar la carta con animación
+        function abrirCarta() {
+            document.getElementById("carta").classList.add("abierta");
+        }
+
+        // Mostrar respuesta al aceptar la invitación
+        function mostrarRespuesta() {
+            document.getElementById("respuesta").style.display = "block";
+        }
+    </script>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>💌 Hola Leoncita has recibido una invitación 💌</h1>
+        <button class="boton" onclick="abrirCarta()">Abrir Carta 📩</button>
+        
+        <div id="carta" class="carta">
+            <p>Mi amorcito, 💕 Desde el momento en que entraste en mi vida, 
+                todo cambió. Cada día a tu lado es un regalo, cada sonrisa tuya ilumina mi mundo y cada abrazo tuyo es mi refugio favorito.
+                No hay palabras suficientes para expresar cuánto te amo y lo agradecido que estoy por tenerte.  💖</p>
+            <p>Eres muy especial para mi y queria invitarte a que seas mi San Valentín este 14 de febrero para que lo pasemos juntos. ¿Que dices? 💖</p>
+            <button class="boton" onclick="mostrarRespuesta()">¡Sí, Mi amor acepto! 💌</button>
+            <p id="respuesta">¡Nuestro primer san valentin juntos, Nos vemos mi amor 😍😍  Te amo.💕💕</p>
+        </div>
+    </div>
+
+</body>
+</html>
